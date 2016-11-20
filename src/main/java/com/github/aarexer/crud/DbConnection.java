@@ -14,7 +14,7 @@ public class DbConnection {
     private Connection connection;
     private static String url = "jdbc:sqlite:crud.db";
 
-    public DbConnection() {
+    private DbConnection() {
         dbConnection = this;
         createConnection();
     }
@@ -36,5 +36,13 @@ public class DbConnection {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    public void closeConnection() throws SQLException {
+        if (connection == null) {
+            throw new IllegalStateException("Connection is null");
+        }
+
+        connection.close();
     }
 }
