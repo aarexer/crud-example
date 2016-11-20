@@ -6,6 +6,7 @@ Simple CRUD application with JDBC and SQLite
 * Singelton pattern
 * DAO pattern
 * Java 8
+* Maven
 * JUnit4 for tests
 
 
