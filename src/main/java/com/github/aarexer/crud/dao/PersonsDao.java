@@ -94,6 +94,13 @@ public class PersonsDao implements DAO<Person> {
 
     @Override
     public void clear() throws SQLException {
+        logger.info("Trying to clear table {}", Queries.StudentTable.TABLE_NAME);
+
+        try (Statement stmt = conn.createStatement()) {
+             final int numOfRows = stmt.executeUpdate(Queries.StudentTable.CLEAR_TABLE);
+
+            logger.info("Table {} cleared, removed {} rows.", Queries.StudentTable.TABLE_NAME, numOfRows);
+        }
     }
 
     @Override
