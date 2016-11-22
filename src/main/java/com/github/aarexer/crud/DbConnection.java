@@ -12,7 +12,7 @@ public class DbConnection {
 
     private static DbConnection dbConnection;
     private Connection connection;
-    private static String url = "jdbc:sqlite:crud.db";
+    private static String url = "jdbc:sqlite::resource:crud.db";
 
     private DbConnection() {
         dbConnection = this;
