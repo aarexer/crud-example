@@ -1,10 +1,12 @@
 package com.github.aarexer.crud.dao;
 
+import com.github.aarexer.crud.model.DaoModel;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-interface DAO<T> {
+interface DAO<T extends DaoModel> {
     /**
      * Add element to the database.
      *
@@ -23,6 +25,7 @@ interface DAO<T> {
 
     /**
      * Get element with specify id from database.
+     *
      * @param id of element which would be added.
      * @return Element.
      * @throws SQLException if operation can't be executed.
@@ -31,6 +34,7 @@ interface DAO<T> {
 
     /**
      * Get all elements from database.
+     *
      * @return all elements of in database
      * @throws SQLException if operation can't be executed.
      */
