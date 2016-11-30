@@ -23,5 +23,7 @@ final class Queries {
         static final String GET_BY_ID = String.format("SELECT * FROM %s WHERE ID=?;", TABLE_NAME);
 
         static final String CLEAR_TABLE = String.format("DELETE FROM %s;", TABLE_NAME);
+
+        static final String GET_ALL = String.format("SELECT * FROM %s;", TABLE_NAME);
     }
 }

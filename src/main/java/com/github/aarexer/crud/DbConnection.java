@@ -25,12 +25,14 @@ public class DbConnection {
 
     private void createConnection() {
         logger.info("Create database connection");
+
         try {
             connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             logger.error("Can't create database connection, reason: {}", e);
             throw new RuntimeException(e);
         }
+
         logger.info("Create connection.");
     }
 
