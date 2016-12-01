@@ -43,7 +43,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public void add(Person person) throws SQLException {
+    public synchronized void add(Person person) throws SQLException {
         logger.info("Adding {}", person);
 
         addPrepStatement.setLong(1, person.getId());
@@ -54,7 +54,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public void remove(int id) throws SQLException {
+    public synchronized void remove(int id) throws SQLException {
         logger.info("Remove person by id: {}", id);
 
         removePrepStatement.setLong(1, id);
@@ -69,7 +69,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public Optional<Person> get(int id) throws SQLException {
+    public synchronized Optional<Person> get(int id) throws SQLException {
         logger.info("Get person by id: {}", id);
 
         getByIdPrepStatement.setLong(1, id);
@@ -89,7 +89,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public Optional<List<Person>> getAll() throws SQLException {
+    public synchronized Optional<List<Person>> getAll() throws SQLException {
         logger.info("Trying to get all elements from table: {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
@@ -114,7 +114,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public void clear() throws SQLException {
+    public synchronized void clear() throws SQLException {
         logger.info("Trying to clear table {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
@@ -125,7 +125,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public void addAll(List<Person> elements) throws SQLException {
+    public synchronized void addAll(List<Person> elements) throws SQLException {
         logger.info("Trying to add elements {} to the table {}", elements, TABLE_NAME);
         for (Person person : elements) {
             add(person);
