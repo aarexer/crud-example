@@ -14,12 +14,12 @@ public class PersonsDaoTest {
 
     @BeforeClass
     public static void beforeAllTests() {
-        personsDao = new PersonsDao(DbConnection.getInstance().getConnection());
+        personsDao = new PersonsDao(DbConnection.getConnection());
     }
 
     @AfterClass
     public static void afterAllTests() throws SQLException {
-        DbConnection.getInstance().closeConnection();
+        DbConnection.closeConnection();
     }
 
     @Test
