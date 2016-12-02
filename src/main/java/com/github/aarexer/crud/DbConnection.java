@@ -10,20 +10,18 @@ import java.sql.SQLException;
 public class DbConnection {
     private static Logger logger = LogManager.getLogger();
 
-    private static DbConnection dbConnection;
-    private Connection connection;
+    private static Connection connection;
     private static String url = "jdbc:sqlite::resource:crud.db";
 
     private DbConnection() {
-        dbConnection = this;
         createConnection();
     }
 
-    public static synchronized DbConnection getInstance() {
-        return dbConnection != null ? dbConnection : new DbConnection();
+    public static synchronized Connection getConnection() {
+        return connection != null ? connection : createConnection();
     }
 
-    private void createConnection() {
+    private static Connection createConnection() {
         logger.info("Create database connection");
 
         try {
@@ -33,14 +31,12 @@ public class DbConnection {
             throw new RuntimeException(e);
         }
 
-        logger.info("Create connection.");
-    }
+        logger.info("Connection created.");
 
-    public Connection getConnection() {
         return connection;
     }
 
-    public void closeConnection() throws SQLException {
+    public static void closeConnection() throws SQLException {
         if (connection == null) {
             throw new IllegalStateException("Connection is null");
         }
