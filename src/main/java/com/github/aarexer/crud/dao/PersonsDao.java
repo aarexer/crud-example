@@ -89,7 +89,7 @@ public class PersonsDao implements DAO<Person> {
     }
 
     @Override
-    public synchronized Optional<List<Person>> getAll() throws SQLException {
+    public synchronized List<Person> getAll() throws SQLException {
         logger.info("Trying to get all elements from table: {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
@@ -105,11 +105,10 @@ public class PersonsDao implements DAO<Person> {
 
             if (persons.size() > 0) {
                 logger.info("Return {} rows after get all query for table {}", persons.size(), TABLE_NAME);
-                return Optional.of(persons);
             } else {
                 logger.info("Empty list after get all query for table {}", TABLE_NAME);
-                return Optional.empty();
             }
+            return persons;
         }
     }
 

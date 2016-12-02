@@ -38,7 +38,7 @@ interface DAO<T extends DaoModel> {
      * @return all elements of in database
      * @throws SQLException if operation can't be executed.
      */
-    Optional<List<T>> getAll() throws SQLException;
+    List<T> getAll() throws SQLException;
 
     /**
      * Clear table.
