@@ -37,10 +37,14 @@ public class DbConnection {
     }
 
     public static void closeConnection() throws SQLException {
+        logger.info("Closing connection.");
+
         if (connection == null) {
             throw new IllegalStateException("Connection is null");
         }
 
         connection.close();
+
+        logger.info("Connection closed.");
     }
 }
