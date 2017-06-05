@@ -1,15 +1,12 @@
 package com.github.aarexer.crud.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class Person extends DaoModel {
-    private String name;
-    private String phone;
-
-    public Person(int id, String name, String phone) {
-        super(id);
-        this.name = name;
-        this.phone = phone;
-    }
+@EqualsAndHashCode
+public class Person {
+    private final int id;
+    private final String name;
+    private final String phone;
 }

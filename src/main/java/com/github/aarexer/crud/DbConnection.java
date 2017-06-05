@@ -6,12 +6,14 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class DbConnection {
+    //todo rewrite all
     private static Logger logger = LogManager.getLogger();
+    private static final String URL = "jdbc:sqlite::resource:crud.db";
 
     private static Connection connection;
-    private static String url = "jdbc:sqlite::resource:crud.db";
 
     private DbConnection() {
         createConnection();
@@ -25,7 +27,7 @@ public class DbConnection {
         logger.info("Create database connection");
 
         try {
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(URL);
         } catch (SQLException e) {
             logger.error("Can't create database connection, reason: {}", e);
             throw new RuntimeException(e);
@@ -39,8 +41,8 @@ public class DbConnection {
     public static void closeConnection() throws SQLException {
         logger.info("Closing connection.");
 
-        if (connection == null) {
-            throw new IllegalStateException("Connection is null");
+        if (Objects.isNull(connection)) {
+            throw new IllegalArgumentException("Connection is null.");
         }
 
         connection.close();

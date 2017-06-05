@@ -1,12 +1,12 @@
 package com.github.aarexer.crud.dao;
 
-import com.github.aarexer.crud.model.DaoModel;
+import com.github.aarexer.crud.model.Person;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-interface DAO<T extends DaoModel> {
+interface PersonDao<T extends Person> {
     /**
      * Add element to the database.
      *

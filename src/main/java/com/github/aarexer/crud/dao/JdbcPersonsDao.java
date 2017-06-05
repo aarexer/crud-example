@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static com.github.aarexer.crud.dao.Queries.StudentTable.TABLE_NAME;
 
-public class PersonsDao implements DAO<Person> {
+public class JdbcPersonsDao implements PersonDao<Person> {
     private static final Logger logger = LogManager.getLogger();
 
     private final Connection conn;
@@ -19,7 +19,7 @@ public class PersonsDao implements DAO<Person> {
     private final PreparedStatement addPrepStatement;
     private final PreparedStatement getByIdPrepStatement;
 
-    public PersonsDao(Connection conn) {
+    public JdbcPersonsDao(Connection conn) {
         this.conn = conn;
 
         try {
@@ -28,7 +28,7 @@ public class PersonsDao implements DAO<Person> {
             this.getByIdPrepStatement = conn.prepareStatement(Queries.StudentTable.GET_BY_ID);
         } catch (SQLException ex) {
             logger.error("Can't create prepared statement");
-            throw new IllegalStateException(ex);
+            throw new RuntimeException("Can't create prepared statement", ex);
         }
     }
 
@@ -49,6 +49,8 @@ public class PersonsDao implements DAO<Person> {
         addPrepStatement.setLong(1, person.getId());
         addPrepStatement.setString(2, person.getName());
         addPrepStatement.setString(3, person.getPhone());
+
+        addPrepStatement.executeUpdate();
 
         logger.info("Element {} added to {} table", person, TABLE_NAME);
     }
@@ -76,8 +78,8 @@ public class PersonsDao implements DAO<Person> {
 
         ResultSet res = getByIdPrepStatement.executeQuery();
         if (res.next()) {
-            final String name = res.getString(2);
-            final String phone = res.getString(3);
+            final String name = res.getString("name");
+            final String phone = res.getString("phone");
 
             logger.info("Person with id: {} returned", id);
 
@@ -97,9 +99,9 @@ public class PersonsDao implements DAO<Person> {
             final List<Person> persons = new ArrayList<>();
 
             while (rs.next()) {
-                final int id = rs.getInt(0);
-                final String name = rs.getString(1);
-                final String phone = rs.getString(2);
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
                 persons.add(new Person(id, name, phone));
             }
 
