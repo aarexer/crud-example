@@ -1,7 +1,6 @@
-import com.github.aarexer.crud.DbConnection;
+import com.github.aarexer.crud.JdbcConnectionFactory;
 import com.github.aarexer.crud.dao.JdbcPersonsDao;
 import com.github.aarexer.crud.model.Person;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,12 +16,7 @@ public class PersonsDaoTest {
 
     @BeforeClass
     public static void beforeAllTests() {
-        personsDao = new JdbcPersonsDao(DbConnection.getConnection());
-    }
-
-    @AfterClass
-    public static void afterAllTests() throws SQLException {
-        DbConnection.closeConnection();
+        personsDao = new JdbcPersonsDao(JdbcConnectionFactory.getConnection());
     }
 
     @Before

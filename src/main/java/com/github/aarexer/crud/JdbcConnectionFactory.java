@@ -6,17 +6,15 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Objects;
 
-public class DbConnection {
-    //todo rewrite all
+public final class JdbcConnectionFactory {
     private static Logger logger = LogManager.getLogger();
     private static final String URL = "jdbc:sqlite::resource:crud.db";
 
     private static Connection connection;
 
-    private DbConnection() {
-        createConnection();
+    private JdbcConnectionFactory() {
+        throw new AssertionError("Fabric class.");
     }
 
     public static synchronized Connection getConnection() {
@@ -36,17 +34,5 @@ public class DbConnection {
         logger.info("Connection created.");
 
         return connection;
-    }
-
-    public static void closeConnection() throws SQLException {
-        logger.info("Closing connection.");
-
-        if (Objects.isNull(connection)) {
-            throw new IllegalArgumentException("Connection is null.");
-        }
-
-        connection.close();
-
-        logger.info("Connection closed.");
     }
 }
