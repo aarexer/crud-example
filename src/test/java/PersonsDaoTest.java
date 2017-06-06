@@ -26,26 +26,26 @@ public class PersonsDaoTest {
 
     @Test
     public void getPersonFromTablePersonsById() throws SQLException {
-        Person personForTest = new Person(1, "Testing", "888");
+        Person personForTest = new Person(1L, "Testing", "888");
         personsDao.add(personForTest);
 
-        Optional<Person> personFromDb = personsDao.get(1);
+        Optional<Person> personFromDb = personsDao.get(1L);
 
         assertTrue(personFromDb.isPresent());
         assertEquals("Testing", personFromDb.get().getName());
         assertEquals("888", personFromDb.get().getPhone());
-        assertEquals(1, personFromDb.get().getId());
+        assertEquals(Long.valueOf(1), personFromDb.get().getId());
     }
 
     @Test
     public void addPersonToTablePersons() throws SQLException {
-        Person personForTest = new Person(1, "Testing", "888");
+        Person personForTest = new Person(1L, "Testing", "888");
         personsDao.add(personForTest);
     }
 
     @Test
     public void getAllPersonsFromTable() throws SQLException {
-        Person personForTest = new Person(1, "Testing", "888");
+        Person personForTest = new Person(1L, "Testing", "888");
         personsDao.add(personForTest);
 
         assertEquals(false, personsDao.getAll().isEmpty());

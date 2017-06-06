@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 public class Person {
-    private final int id;
+    private final Long id;
     private final String name;
     private final String phone;
 }

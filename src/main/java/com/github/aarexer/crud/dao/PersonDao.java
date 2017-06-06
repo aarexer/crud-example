@@ -21,7 +21,7 @@ interface PersonDao<T extends Person> {
      * @param id of element which would be removed.
      * @throws SQLException if operation can't be executed.
      */
-    void remove(int id) throws SQLException;
+    void remove(Long id) throws SQLException;
 
     /**
      * Get element with specify id from database.
@@ -30,7 +30,7 @@ interface PersonDao<T extends Person> {
      * @return Element.
      * @throws SQLException if operation can't be executed.
      */
-    Optional<T> get(int id) throws SQLException;
+    Optional<T> get(Long id) throws SQLException;
 
     /**
      * Get all elements from database.

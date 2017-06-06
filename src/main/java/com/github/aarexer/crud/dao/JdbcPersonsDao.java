@@ -56,7 +56,7 @@ public class JdbcPersonsDao implements PersonDao<Person> {
     }
 
     @Override
-    public synchronized void remove(int id) throws SQLException {
+    public synchronized void remove(Long id) throws SQLException {
         logger.info("Remove person by id: {}", id);
 
         removePrepStatement.setLong(1, id);
@@ -71,7 +71,7 @@ public class JdbcPersonsDao implements PersonDao<Person> {
     }
 
     @Override
-    public synchronized Optional<Person> get(int id) throws SQLException {
+    public synchronized Optional<Person> get(Long id) throws SQLException {
         logger.info("Get person by id: {}", id);
 
         getByIdPrepStatement.setLong(1, id);
@@ -99,7 +99,7 @@ public class JdbcPersonsDao implements PersonDao<Person> {
             final List<Person> persons = new ArrayList<>();
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 persons.add(new Person(id, name, phone));
