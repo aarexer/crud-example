@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-interface PersonDao<T extends Person> {
+interface PersonDao {
     /**
      * Add element to the database.
      *
      * @param element which would added.
      * @throws SQLException if operation can't be executed.
      */
-    void add(T element) throws SQLException;
+    void add(Person element) throws SQLException;
 
     /**
      * Remove element by id from the database.
@@ -30,7 +30,7 @@ interface PersonDao<T extends Person> {
      * @return Element.
      * @throws SQLException if operation can't be executed.
      */
-    Optional<T> get(Long id) throws SQLException;
+    Optional<Person> get(Long id) throws SQLException;
 
     /**
      * Get all elements from database.
@@ -38,7 +38,7 @@ interface PersonDao<T extends Person> {
      * @return all elements of in database
      * @throws SQLException if operation can't be executed.
      */
-    List<T> getAll() throws SQLException;
+    List<Person> getAll() throws SQLException;
 
     /**
      * Clear table.
@@ -53,5 +53,5 @@ interface PersonDao<T extends Person> {
      * @param elements which would be added.
      * @throws SQLException if operation can't be executed.
      */
-    void addAll(List<T> elements) throws SQLException;
+    void addAll(List<Person> elements) throws SQLException;
 }

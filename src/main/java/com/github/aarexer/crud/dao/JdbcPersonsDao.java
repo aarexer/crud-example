@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static com.github.aarexer.crud.dao.Queries.StudentTable.TABLE_NAME;
 
-public class JdbcPersonsDao implements PersonDao<Person> {
+public class JdbcPersonsDao implements PersonDao {
     private static final Logger logger = LogManager.getLogger();
 
     private final Connection conn;
