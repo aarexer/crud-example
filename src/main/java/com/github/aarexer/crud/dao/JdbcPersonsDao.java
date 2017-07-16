@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.github.aarexer.crud.dao.Queries.StudentTable.TABLE_NAME;
+import static com.github.aarexer.crud.dao.Queries.Persons.TABLE_NAME;
 
 public class JdbcPersonsDao implements PersonDao {
     private static final Logger logger = LogManager.getLogger();
@@ -23,9 +23,9 @@ public class JdbcPersonsDao implements PersonDao {
         this.conn = conn;
 
         try {
-            this.removePrepStatement = conn.prepareStatement(Queries.StudentTable.REMOVE_BY_ID);
-            this.addPrepStatement = conn.prepareStatement(Queries.StudentTable.ADD);
-            this.getByIdPrepStatement = conn.prepareStatement(Queries.StudentTable.GET_BY_ID);
+            this.removePrepStatement = conn.prepareStatement(Queries.Persons.REMOVE_BY_ID);
+            this.addPrepStatement = conn.prepareStatement(Queries.Persons.ADD);
+            this.getByIdPrepStatement = conn.prepareStatement(Queries.Persons.GET_BY_ID);
         } catch (SQLException ex) {
             logger.error("Can't create prepared statement");
             throw new RuntimeException("Can't create prepared statement", ex);
@@ -36,7 +36,7 @@ public class JdbcPersonsDao implements PersonDao {
         logger.info("Trying to create table {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
-            stmt.execute(Queries.StudentTable.CREATE);
+            stmt.execute(Queries.Persons.CREATE);
 
             logger.info("Table {} created.", TABLE_NAME);
         }
@@ -95,7 +95,7 @@ public class JdbcPersonsDao implements PersonDao {
         logger.info("Trying to get all elements from table: {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
-            final ResultSet rs = stmt.executeQuery(Queries.StudentTable.GET_ALL);
+            final ResultSet rs = stmt.executeQuery(Queries.Persons.GET_ALL);
             final List<Person> persons = new ArrayList<>();
 
             while (rs.next()) {
@@ -119,7 +119,7 @@ public class JdbcPersonsDao implements PersonDao {
         logger.info("Trying to clear table {}", TABLE_NAME);
 
         try (Statement stmt = conn.createStatement()) {
-            final int numOfRows = stmt.executeUpdate(Queries.StudentTable.CLEAR_TABLE);
+            final int numOfRows = stmt.executeUpdate(Queries.Persons.CLEAR_TABLE);
 
             logger.info("Table {} cleared, removed {} rows.", TABLE_NAME, numOfRows);
         }
