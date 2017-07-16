@@ -5,8 +5,8 @@ final class Queries {
         throw new AssertionError("Class for static can't have instances!");
     }
 
-    static final class StudentTable {
-        private StudentTable() {
+    static final class Persons {
+        private Persons() {
             throw new AssertionError("Class for static can't have instances!");
         }
 
