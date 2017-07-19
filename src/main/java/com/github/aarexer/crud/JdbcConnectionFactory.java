@@ -28,7 +28,7 @@ public final class JdbcConnectionFactory {
             connection = DriverManager.getConnection(URL);
         } catch (SQLException e) {
             logger.error("Can't create database connection, reason: {}", e);
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't create database connection", e);
         }
 
         logger.info("Connection created.");
