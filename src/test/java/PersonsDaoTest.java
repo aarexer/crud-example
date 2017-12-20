@@ -1,4 +1,4 @@
-import com.github.aarexer.crud.JdbcConnectionFactory;
+import com.github.aarexer.crud.JdbcEmbeddedConnection;
 import com.github.aarexer.crud.dao.JdbcPersonsDao;
 import com.github.aarexer.crud.model.Person;
 import org.junit.Before;
@@ -15,8 +15,8 @@ public class PersonsDaoTest {
     private static JdbcPersonsDao personsDao;
 
     @BeforeClass
-    public static void beforeAllTests() {
-        personsDao = new JdbcPersonsDao(JdbcConnectionFactory.getConnection());
+    public static void beforeAllTests() throws SQLException {
+        personsDao = new JdbcPersonsDao(JdbcEmbeddedConnection.getConnection());
     }
 
     @Before
