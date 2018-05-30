@@ -22,16 +22,16 @@ public final class JdbcEmbeddedConnection {
     }
 
     private static Connection createConnection() {
-        logger.info("Create database connection");
+        logger.info("Creating database connection");
 
-        try {
-            connection = DriverManager.getConnection(URL);
+        try (Connection tryConnected = DriverManager.getConnection(URL)) {
+            // if it's all ok - assignment connection, otherwise - try to close it
+            connection = tryConnected;
+            logger.info("Connection created.");
         } catch (SQLException e) {
             logger.error("Can't create database connection, cause: {}", e);
             throw new RuntimeException("Can't create database connection", e);
         }
-
-        logger.info("Connection created.");
 
         return connection;
     }

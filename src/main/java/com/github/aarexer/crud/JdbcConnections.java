@@ -11,8 +11,9 @@ public enum JdbcConnections {
     private Connection connection;
 
     JdbcConnections(String url) {
-        try {
-            connection = DriverManager.getConnection(url);
+        try(Connection conn = DriverManager.getConnection(url)) {
+            // if it's all ok - assignment connection, otherwise - try to close it
+            connection = conn;
         } catch (SQLException e) {
             throw new RuntimeException("Can't create database connection", e);
         }

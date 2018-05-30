@@ -12,10 +12,10 @@ And cover all code with logging.
 ### Inside:
 * JDBC and SQLite as database
 * Plain SQL without any ORM frameworks
-* Singleton pattern for connection
+* Singleton connection
 * DAO pattern
 * Java 8
 * Maven
-* JUnit4 for tests
+* JUnit4
 
 
