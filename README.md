@@ -3,11 +3,15 @@ Simple CRUD application with JDBC and SQLite
 
 This project is very simple dummy example for CRUD application.
 
-In this project we learn how to create statements, working with DataSource.
-We will create dummy DAO-level for only one model class - Person.
+> **It doesn't compile and contains errors! It's not the best example of CRUD.**
+> 
+> **Project is for education purpose, it's test for students.**
 
-We will create interface DAO and JDBC implementation for Person.
-And cover all code with logging.
+## Task 
+
+This project is simple CRUD for class Person.
+
+Your task is find all mistakes and defects and explain why it's wrong and bad.
 
 ### Inside:
 * JDBC and SQLite as database
